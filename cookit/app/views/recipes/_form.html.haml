@@ -1,0 +1,13 @@
+= simple_form_for @recipe, html: {class: 'form-horizontal', multipart: true} do |form|
+  - if @recipe.errors.any?
+    #errors
+      %p
+        = @recipe.errors.count
+        Prevented this recipe from saving
+      %ul
+        = @recipe.errors.full_messages.each do |msg|
+          %li= msg
+  .panel-body
+    = form.input :title
+    = form.input :description
+    = form.button :submit, class: "btn btn-primary"
