@@ -8,8 +8,26 @@
         = @recipe.errors.full_messages.each do |msg|
           %li= msg
   .panel-body
-    = form.input :title
-    = form.input :description
+    = form.input :title, input_html: {class: "form-control"}
+    = form.input :description, input_html: {class: "form-control"}
     = form.input :image, as: :hidden, input_html: {value: @recipe.cached_image_data}
-    = form.input :image, as: :file
+    = form.input :image, as: :file, input_html: {class: "form-control"}
+
+    .row
+      .col-md-6
+        %h3 Ingredients
+        #ingredients
+          = form.simple_fields_for :ingredients do |ingredient|
+            = render 'ingredient_fields', f: ingredient
+          .link
+            = link_to_add_association 'Add ingredient', form, :ingredients, class: "btn btn-default add-button"
+
+      .col-md-6
+        %h3 Instructions
+        #instructions
+          = form.simple_fields_for :instructions do |instruction|
+            = render 'instruction_fields', f: instruction
+          .link
+            = link_to_add_association 'Add step', form, :instructions, class: "btn btn-default add-button"
+
     = form.button :submit, class: "btn btn-primary"

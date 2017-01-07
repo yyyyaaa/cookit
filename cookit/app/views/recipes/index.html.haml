@@ -8,6 +8,12 @@
 -#             = link_to recipe do
 -#               = image_tag recipe.image.url(:medium)
 -#           %h2= link_to recipe.title, recipe
-- @recipes.each do |recipe|
+- @recipes.each_slice(3) do |recipes|
   .row
-    %h1= link_to recipe.title, recipe
+    - recipes.each do |recipe|
+      .col-md-4
+        .recipe
+          .image-wrapper
+            = link_to recipe do
+              = image_tag recipe.image_url(:normal), class: "img-thumbnail"
+          %h1= link_to recipe.title, recipe
