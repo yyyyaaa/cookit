@@ -1,4 +1,8 @@
 - provide(:title, @recipe.title)
+- if @recipe.image_url(:normal)
+  = image_tag @recipe.image_url(:normal), class: "img-thumbnail"
+- else
+  = image_tag "http://placehold.it/400x400", class: "img-thumbnail"
 %h1= @recipe.title
 %p= @recipe.description
 

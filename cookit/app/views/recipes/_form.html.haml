@@ -10,4 +10,6 @@
   .panel-body
     = form.input :title
     = form.input :description
+    = form.input :image, as: :hidden, input_html: {value: @recipe.cached_image_data}
+    = form.input :image, as: :file
     = form.button :submit, class: "btn btn-primary"
