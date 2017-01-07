@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :ingredients, inverse_of: :recipe
   has_many :instructions, inverse_of: :recipe
+  belongs_to :user
   # Virtual :image attribute
   include ImageUploader[:image]
 
