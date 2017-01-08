@@ -1,27 +1,9 @@
 - provide(:title, "All recipes")
--# - @recipes.each_slice(3) do |recipes|
--#   .row
--#     - recipes.each do |recipe|
--#       .col-md-4
--#         .recipe
--#           .image_wrapper
--#             = link_to recipe do
--#               = image_tag recipe.image.url(:medium)
--#           %h2= link_to recipe.title, recipe
--# - @recipes.each_slice(3) do |recipes|
--#   .row
--#     - recipes.each do |recipe|
--#       .col-md-4
--#         .recipe
--#           .image-wrapper
--#             = link_to recipe do
--#               = image_tag recipe.image_url(:normal), class: "img-thumbnail"
--#           %h1= link_to recipe.title, recipe
 - @recipes.each do |recipe|
   .row
     .col-md-6.col--center
-      .recipe
+      .Recipe
+        %h1.Recipe-title= link_to recipe.title, recipe
         .image-wrapper
           = link_to recipe do
             = image_tag recipe.image_url(:normal), class: "img-thumbnail"
-        %h1= link_to recipe.title, recipe

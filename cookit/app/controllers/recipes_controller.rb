@@ -10,11 +10,11 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.build
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.new(recipe_params)
     if @recipe && @recipe.save
       redirect_to @recipe, notice: "Successfully created a recipe!"
     else
@@ -34,8 +34,12 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.destroy
-    redirect_to root_path, notice: "Successfully deleted a recipe"
+    if current_user == @recipe.user
+      @recipe.destroy
+      redirect_to root_path, notice: "Successfully deleted a recipe"
+    else
+      render @recipe, notice: "You cannot delete this post, please log in with the correct account."
+    end
   end
 
   private
