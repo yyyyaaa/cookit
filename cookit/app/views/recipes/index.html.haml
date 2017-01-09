@@ -2,8 +2,19 @@
 - @recipes.each do |recipe|
   .row
     .col-md-6.col--center
-      .Recipe
+      .Recipe{:class => "Recipe-#{recipe.id}"}
         %h1.Recipe-title= link_to recipe.title, recipe
         .image-wrapper
           = link_to recipe do
             = image_tag recipe.image_url(:normal), class: "img-thumbnail"
+        .Recipe-meta
+          %span.Recipe-votes
+            = recipe.get_likes.size
+            points
+        .Recipe-actions
+          .Action-upvote
+            = link_to upvote_recipe_path(recipe), method: :put, remote: true do
+              %span Upvote
+          .Action-downvote
+            = link_to downvote_recipe_path(recipe), method: :put, remote: true do
+              %span Downvote

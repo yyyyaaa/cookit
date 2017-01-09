@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  acts_as_votable
   has_many :ingredients, inverse_of: :recipe
   has_many :instructions, inverse_of: :recipe
   belongs_to :user

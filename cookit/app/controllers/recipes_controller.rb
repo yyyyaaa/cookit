@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :find_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_recipe, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :upvote, :downvote]
 
   def index
     @recipes = Recipe.all.order('created_at DESC')
@@ -39,6 +39,20 @@ class RecipesController < ApplicationController
       redirect_to root_path, notice: "Successfully deleted a recipe"
     else
       render @recipe, notice: "You cannot delete this post, please log in with the correct account."
+    end
+  end
+
+  def upvote
+    @recipe.vote_by :voter => current_user, vote: 'like'
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def downvote
+    @recipe.vote_by :voter => current_user, vote: 'bad'
+    respond_to do |format|
+      format.js
     end
   end
 
