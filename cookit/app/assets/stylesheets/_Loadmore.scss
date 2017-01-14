@@ -1,0 +1,18 @@
+.Loadmore-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 150px;
+}
+
+.Loadmore-container.is-hidden {
+  display: none;
+}
+
+.Loadmore-icon#floatingCirclesG {
+  visibility: hidden;
+}
+
+.Loadmore-icon#floatingCirclesG.is-shown {
+  visibility: visible;
+}

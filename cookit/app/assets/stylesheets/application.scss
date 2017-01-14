@@ -1,2 +1,17 @@
 @import "bootstrap";
-@import "recipes.scss";
+@import "Spinner.scss";
+@import "Recipes.scss";
+@import "Loadmore.scss";
+@import "Comments.scss";
+@import "helpers.scss";
+@import "social-share-button";
+
+$size: 30px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}

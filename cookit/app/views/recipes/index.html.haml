@@ -8,9 +8,13 @@
           = link_to recipe do
             = image_tag recipe.image_url(:normal), class: "img-thumbnail"
         .Recipe-meta
-          %span.Recipe-votes
+          %span.Recipe-numVotes.u-margin-right--24
             = recipe.get_likes.size
             points
+          %a.Recipe-numComments{href: recipe_path(recipe)}
+            %span
+              = recipe.comments.size
+              comments
         .Recipe-actions
           .Action-upvote
             = link_to upvote_recipe_path(recipe), method: :put, remote: true do
