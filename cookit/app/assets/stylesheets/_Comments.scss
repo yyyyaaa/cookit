@@ -1,0 +1,32 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.Comments {
+  padding: 24px;
+  display: inline-block;
+  border: 1px solid #fafafa;
+  margin-bottom: 24px;
+}
+
+.Comment-owner {
+  color: #262626;
+  font-weight: 600;
+}
+
+.Comment-body {
+  color: #000;
+}
+
+.Comment-owner,
+.Comment-time {
+  display: inline-block;
+}
+
+.Comment-time {
+  font-size: 14px;
+  color: #90949c;
+}
+
+form#new_comment {
+  margin-bottom: 24px;
+}

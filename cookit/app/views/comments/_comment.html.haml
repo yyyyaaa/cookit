@@ -1,0 +1,5 @@
+- comment = @comment if @comment
+.Comment{"data-id" => comment.id}
+  %span.Comment-owner= comment.user.email
+  %span.Comment-time= time_ago_in_words(comment.created_at) + " ago"
+  %p.Comment-body= comment.body

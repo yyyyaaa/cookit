@@ -1,11 +1,38 @@
-- provide(:title, @recipe.title)
-- if @recipe.image_url(:normal)
-  = image_tag @recipe.image_url(:normal), class: "img-thumbnail"
-- else
-  = image_tag "http://placehold.it/400x400", class: "img-thumbnail"
-%h1= @recipe.title
-%p= @recipe.description
+.Recipe-content
+  .row
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      - provide(:title, @recipe.title)
+      - if @recipe.image_url(:normal)
+        = image_tag @recipe.image_url(:normal), class: "img-thumbnail"
+      - else
+        = image_tag "http://placehold.it/400x400", class: "img-thumbnail"
+      %h1= @recipe.title
+      %p= @recipe.description
+      = social_share_button_tag(@recipe.title, :url => recipe_url(@recipe), :image => @recipe.image_url(:normal), desc: @recipe.description)
 
-= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-warning"
-= link_to "Delete", @recipe, method: :delete, class: "btn btn-danger"
-= link_to "Back", root_path, class: 'btn btn-default'
+      .Comments
+        .Loadmore-container
+          = link_to "Load more", recipe_comments_path(recipe_id: @recipe.id), class: "Loadmore-link", remote: true
+          = render template: 'shared/spinner'
+        - if not @recipe.comments.empty?
+          - @recipe.comments.take(5).each do |comment|
+            = render comment
+
+      = render partial: "comments/form", locals: { recipe: @recipe }
+
+      = link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-warning"
+      = link_to "Delete", @recipe, method: :delete, class: "btn btn-danger"
+      = link_to "Back", root_path, class: 'btn btn-default'
+
+    .col-xs-12.col-sm-6.col-md-6.col-lg-6
+      %h1 Ingredients
+      %ol.Recipe-ingredients
+        - @recipe.ingredients.each do |ingredient|
+          %li.Recipe-ingredient
+            %p= ingredient.name
+
+      %h1 Instructions
+      %ol.Recipe-instructions
+        - @recipe.instructions.each do |instruction|
+          %li.Recipe-instruction
+            %p= instruction.step
