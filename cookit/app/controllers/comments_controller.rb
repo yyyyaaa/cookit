@@ -1,12 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :find_commentable
-  
+
   def index
     if params[:id]
       @comments = Comment.where("id > ?", params[:id]).limit(5)
-    else
-      @comments = Comment.limit(5)
     end
     respond_to do |format|
       format.js
