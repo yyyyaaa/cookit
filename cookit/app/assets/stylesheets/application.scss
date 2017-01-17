@@ -15,3 +15,12 @@ $size: 30px;
     width: $size;
   }
 }
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.col-1of3 {
+  width: 30%;
+}

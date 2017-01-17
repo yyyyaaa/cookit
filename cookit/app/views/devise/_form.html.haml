@@ -1,0 +1,18 @@
+.row
+  .col.col-centered.col-1of3
+    = simple_form_for @user do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :name, :required => true, :autofocus => true
+        = f.input :about, :required => true
+      .form-actions
+        = f.button :submit, class: "btn btn-primary"
+    %div
+      Connect Account
+      - ['facebook', 'google_oauth2'].each do |provider|
+        - if current_user.authorizations.pluck(:provider).include?(provider.to_s)
+          = provider.to_s.titleize
+          Connected
+        - else
+          = link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path('user', provider)
+        %br/

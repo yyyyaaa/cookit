@@ -22,3 +22,6 @@
 
 # Ignore media files
 /public/uploads/*
+
+# Ignore social app keys
+/config/social_keys.yml

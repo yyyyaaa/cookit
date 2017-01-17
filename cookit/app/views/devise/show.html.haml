@@ -1,0 +1,9 @@
+.row
+  .col.col-centered.col-1of3
+    %p#notice= notice
+    %p
+      %strong Name:
+      = @user.username
+      %strong Email:
+      = @user.email
+    = link_to 'Edit', edit_user_path(@user)

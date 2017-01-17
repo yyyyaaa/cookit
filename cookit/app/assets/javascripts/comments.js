@@ -1,5 +1,4 @@
-// when the page is ready for manipulation
-$(document).ready(function () {
+$(document).on('turbolinks:load', function () {
     // when the load more link is clicked
     $('a.Loadmore-link').on('click', function (e) {
         // prevent the default click action
