@@ -1,0 +1,8 @@
+- provide(:title, "My recipes")
+- if @recipes.empty?
+  %h2
+    Hey, you don't have any recipes. Let's
+    %a{:href => new_recipe_path}create
+    some!
+
+= render "recipes_list"

@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout", registration: "register"},
                       controllers: { omniauth_callbacks: "omniauth_callbacks" }
-  resources :users
+  resources :users do
+    member do
+      get "myrecipes", to: "recipes#myrecipes"
+    end
+  end
   resources :recipes do
     resources :comments
     member do
