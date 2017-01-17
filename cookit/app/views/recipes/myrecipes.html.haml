@@ -1,33 +1,8 @@
 - provide(:title, "My recipes")
 - if @recipes.empty?
-  %h2 
+  %h2
     Hey, you don't have any recipes. Let's
     %a{:href => new_recipe_path}create
     some!
 
-- @recipes.each do |recipe|
-  .row
-    .col-md-6.col--center
-      .Recipe{:class => "Recipe-#{recipe.id}"}
-        %h1.Recipe-title= link_to recipe.title, recipe
-        .image-wrapper
-          = link_to recipe do
-            = image_tag recipe.image_url(:normal), class: "img-thumbnail"
-        .Recipe-meta
-          %span.Recipe-numVotes.u-margin-right--24
-            = recipe.get_likes.size
-            points
-          %a.Recipe-numComments{href: recipe_path(recipe)}
-            %span
-              = recipe.comments.size
-              comments
-        .Recipe-actions
-          .Action-upvote
-            = link_to upvote_recipe_path(recipe), method: :put, remote: true do
-              %span Upvote
-          .Action-downvote
-            = link_to downvote_recipe_path(recipe), method: :put, remote: true do
-              %span Downvote
-        .form-actions
-          = link_to edit_recipe_path(recipe), "Edit", class: "btn btn-warning"
-          = link_to recipe_path(recipe), "Delete", class: "btn btn-danger", method: :delete
+= render "recipes_list"

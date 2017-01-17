@@ -16,4 +16,8 @@ class Recipe < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
+  def self.search(search_term)
+    where("title LIKE ?", "%#{search_term}%")
+    where("description LIKE ?", "%#{search_term}%")
+  end
 end
