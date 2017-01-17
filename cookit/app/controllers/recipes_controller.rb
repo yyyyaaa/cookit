@@ -1,9 +1,13 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :upvote, :downvote]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :upvote, :downvote, :myrecipes]
 
   def index
     @recipes = Recipe.all.order('created_at DESC')
+  end
+
+  def myrecipes
+    @recipes = current_user.recipes.order('created_at DESC')
   end
 
   def show
